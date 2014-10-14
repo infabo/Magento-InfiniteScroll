@@ -1,0 +1,7 @@
+app/code/community/Strategery/Infinitescroll app/code/community/Strategery/Infinitescroll
+app/design/frontend/default/default/layout/strategery-infinitescroll.xml app/design/frontend/default/default/layout/strategery-infinitescroll.xml
+app/design/frontend/default/default/template/strategery/infinitescroll app/design/frontend/default/default/template/strategery/infinitescroll
+app/etc/modules/Strategery_Infinitescroll.xml app/etc/modules/Strategery_Infinitescroll.xml
+js/jquery/infinitescroll js/jquery/infinitescroll
+js/jquery/jquery.latest.min.js js/jquery/jquery.latest.min.js
+skin/frontend/base/default/js/infinitescroll skin/frontend/base/default/js/infinitescroll
