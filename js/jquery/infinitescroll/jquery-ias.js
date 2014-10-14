@@ -50,7 +50,7 @@
             if (opts.triggerPageThreshold > 0) {
                 // setup scroll and hide pagination
                 reset();
-            } else if ($(opts.next).attr('href')) {
+            } else if (jQuery(opts.next).attr('href')) {
                 var curScrOffset = util.getCurrentScrollOffset(opts.scrollContainer);
                 show_trigger(function () {
                     paginate(curScrOffset);
@@ -68,7 +68,7 @@
                         paginateToPage(pageNum);
 
                         curThreshold = get_scroll_threshold(true);
-                        $('html, body').scrollTop(curThreshold);
+                        jQuery('html, body').scrollTop(curThreshold);
                     }
                     else {
                         reset();
@@ -137,7 +137,7 @@
          */
         function hide_pagination()
         {
-            $(opts.pagination).hide();
+            jQuery(opts.pagination).hide();
         }
 
         /**
@@ -151,7 +151,7 @@
             var el,
                 threshold;
 
-            el = $(opts.container).find(opts.item).last();
+            el = jQuery(opts.container).find(opts.item).last();
 
             if (el.size() === 0) {
                 return 0;
@@ -177,7 +177,7 @@
         {
             var urlNextPage;
 
-            urlNextPage = $(opts.next).attr('href');
+            urlNextPage = jQuery(opts.next).attr('href');
             if (!urlNextPage) {
                 return stop_scroll();
             }
@@ -199,18 +199,18 @@
                     curLastItem;
 
                 if (result !== false) {
-                    $(items).hide();  // at first, hide it so we can fade it in later
+                    jQuery(items).hide();  // at first, hide it so we can fade it in later
 
                     // insert them after the last item with a nice fadeIn effect
-                    curLastItem = $(opts.container).find(opts.item).last();
+                    curLastItem = jQuery(opts.container).find(opts.item).last();
                     curLastItem.after(items);
-                    $(items).fadeIn();
+                    jQuery(items).fadeIn();
                 }
 
-                urlNextPage = $(opts.next, data).attr('href');
+                urlNextPage = jQuery(opts.next, data).attr('href');
 
                 // update pagination
-                $(opts.pagination).replaceWith($(opts.pagination, data));
+                jQuery(opts.pagination).replaceWith(jQuery(opts.pagination, data));
 
                 remove_loader();
                 hide_pagination();
@@ -220,7 +220,7 @@
                 }
                 else {
                     if (opts.noneleft) {
-                        $(opts.container).find(opts.item).last().after(opts.noneleft);
+                        jQuery(opts.container).find(opts.item).last().after(opts.noneleft);
                     }
                     stop_scroll();
                 }
@@ -256,11 +256,11 @@
             $.get(url, null, function (data) {
                 // walk through the items on the next page
                 // and add them to the items array
-                container = $(opts.container, data).eq(0);
+                container = jQuery(opts.container, data).eq(0);
                 if (0 === container.length) {
                     // incase the element is a root element (body > element),
                     // try to filter it
-                    container = $(data).filter(opts.container).eq(0);
+                    container = jQuery(data).filter(opts.container).eq(0);
                 }
 
                 if (container) {
@@ -301,10 +301,10 @@
                     if ((paging.getCurPageNum(curThreshold) + 1) < pageNum) {
                         paginateToPage(pageNum);
 
-                        $('html,body').animate({'scrollTop': curThreshold}, 400, 'swing');
+                        jQuery('html,body').animate({'scrollTop': curThreshold}, 400, 'swing');
                     }
                     else {
-                        $('html,body').animate({'scrollTop': curThreshold}, 1000, 'swing');
+                        jQuery('html,body').animate({'scrollTop': curThreshold}, 1000, 'swing');
 
                         reset();
                     }
@@ -326,10 +326,10 @@
          */
         function get_loader()
         {
-            var loader = $('.ias_loader');
+            var loader = jQuery('.ias_loader');
 
             if (loader.size() === 0) {
-                loader = $('<div class="ias_loader">' + opts.loader + '</div>');
+                loader = jQuery('<div class="ias_loader">' + opts.loader + '</div>');
                 loader.hide();
             }
             return loader;
@@ -348,7 +348,7 @@
             if (opts.customLoaderProc !== false) {
                 opts.customLoaderProc(loader);
             } else {
-                el = $(opts.container).find(opts.item).last();
+                el = jQuery(opts.container).find(opts.item).last();
                 el.after(loader);
                 loader.fadeIn();
             }
@@ -372,14 +372,14 @@
          */
         function get_trigger(callback)
         {
-            var trigger = $('.ias_trigger');
+            var trigger = jQuery('.ias_trigger');
 
             if (trigger.size() === 0) {
-                trigger = $('<div class="ias_trigger"><a href="#">' + opts.trigger + '</a></div>');
+                trigger = jQuery('<div class="ias_trigger"><a href="#">' + opts.trigger + '</a></div>');
                 trigger.hide();
             }
 
-            $('a', trigger)
+            jQuery('a', trigger)
                 .unbind('click')
                 .bind('click', function () { remove_trigger(); callback.call(); return false; })
             ;
@@ -398,7 +398,7 @@
             if (opts.customTriggerProc !== false) {
                 opts.customTriggerProc(trigger);
             } else {
-                el = $(opts.container).find(opts.item).last();
+                el = jQuery(opts.container).find(opts.item).last();
                 el.after(trigger);
                 trigger.fadeIn();
             }
@@ -420,7 +420,7 @@
     // plugin defaults
     $.ias.defaults = {
         container: '#container',
-        scrollContainer: $(window),
+        scrollContainer: jQuery(window),
         item: '.item',
         pagination: '#pagination',
         next: '.next',
@@ -454,7 +454,7 @@
          */
         function init()
         {
-            $(window).load(function () {
+            jQuery(window).load(function () {
                 wndIsLoaded = true;
             });
         }
@@ -474,7 +474,7 @@
          */
         this.forceScrollTop = function (onCompleteHandler)
         {
-            $('html,body').scrollTop(0);
+            jQuery('html,body').scrollTop(0);
             if (!forceScrollTopIsCompleted) {
                 if (!wndIsLoaded) {
                     setTimeout(function () {self.forceScrollTop(onCompleteHandler); }, 1);
@@ -519,7 +519,7 @@
          */
         function init()
         {
-            $(window).scroll(scroll_handler);
+            jQuery(window).scroll(scroll_handler);
         }
 
         // initialize
@@ -540,7 +540,7 @@
                 scrOffset,
                 urlPage;
 
-            curScrOffset = util.getCurrentScrollOffset($(window));
+            curScrOffset = util.getCurrentScrollOffset(jQuery(window));
 
             curPageNum = getCurPageNum(curScrOffset);
             curPagebreak = getCurPagebreak(curScrOffset);
@@ -578,7 +578,7 @@
          */
         this.getCurPageNum = function (scrollOffset)
         {
-            scrollOffset = scrollOffset || util.getCurrentScrollOffset($(window));
+            scrollOffset = scrollOffset || util.getCurrentScrollOffset(jQuery(window));
 
             return getCurPageNum(scrollOffset);
         };

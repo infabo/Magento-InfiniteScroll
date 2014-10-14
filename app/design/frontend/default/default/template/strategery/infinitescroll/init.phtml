@@ -93,7 +93,7 @@
 							history: <?php echo ($helper->isMemoryActive()) ? 'true' : 'false'; ?>,
 							noneleft: '<?php echo $helper->jsQuoteEscape($this->__($helper->getConfigData('design/done_text'))) ?>',
 							loader: '<img src="<?php echo $this->getLoaderImage() ?>" /> <?php echo $helper->jsQuoteEscape($this->__($helper->getConfigData('design/loading_text'))); ?>',
-							scrollContainer: <?php if($helper->getConfigData('design/local_mode')): ?>$('<?php echo $helper->getConfigData('selectors/content') ?>')<?php else: ?>$(window)<?php endif ?>,
+							scrollContainer: <?php if($helper->getConfigData('design/local_mode')): ?>jQuery('<?php echo $helper->getConfigData('selectors/content') ?>')<?php else: ?>$(window)<?php endif ?>,
 							thresholdMargin: -<?php echo (int) $helper->getConfigData('design/buffer_px') ?>
 						};
 
@@ -103,10 +103,10 @@
 
 						$.ias(config);
 
-						$('<?php echo Mage::getStoreConfig('infinitescroll/selectors/toolbar') ?>').<?php echo $helper->getConfigData('design/hide_toolbar') ? 'hide' : 'show' ?>();
+						jQuery('<?php echo Mage::getStoreConfig('infinitescroll/selectors/toolbar') ?>').<?php echo $helper->getConfigData('design/hide_toolbar') ? 'hide' : 'show' ?>();
 
 						if(windowLoadedFlag){
-							$(window).load();
+							jQuery(window).load();
 						}
 
 				});
